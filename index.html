@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<!--Daniel Connell
+CSC 102 2021 Online 3
+WK 5-1
+Assignment: Javascript DOM and Document Structure with Tables, Themes, and Mock Data-->
+
+<!--UAT Space Page -->
+
+<head>
+    <!--This is the head and the Title of the page-->
+    <title>
+        UAT Space Page
+    </title>
+    <!--This is the link to the java script code file-->
+    <script src="code.js"></script>
+    <script src="dataLoader-1.js"></script>
+    <!--This is the link to the page style files-->
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<script>
+    //this is my Javascript comment
+    /*This is a
+    multiline comment*/
+</script>
+
+<body>
+    <!--Needed for dom-->
+    <script>
+        var theTime = new Date();
+        var tempTime = new Date();
+        var time_interval = 5000;
+        var last_iteration = 0;
+        var running = true;
+        var index = 0;
+        var timer;
+
+        // to get data from data loader
+        var data = getData();
+
+        function updateDisplay(){
+            theTime = new Date();
+
+            //fill in the table
+            var timeRead = data[index].time_seconds;
+            if(timeRead >= 10){
+                document.getElementById("data").rows["seconds"].innerHTML = dateRow("Time Elapsed", data[index].time_seconds, "seconds");
+                document.getElementById("data").rows["latitude"].innerHTML = dateRow("Latitude", data[index].latitude, "");
+                document.getElementById("data").rows["longitude"].innerHTML = dateRow("Longitude", data[index].longitude, "");
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dateRow("GPS Altitude", data[index].gps_altitude, "");
+                document.getElementById("data").rows["bmp_sensor_altitude"].innerHTML = dateRow("BMP Sensor Altitude", data[index].bmpsensor_altitude, "");
+                document.getElementById("data").rows["bmp_sensor_pressure"].innerHTML = dateRow("BMP Sensor Pressure", data[index].bmpsensor_pressure, "");
+                document.getElementById("data").rows["bmp_sensor_temperature"].innerHTML = dateRow("BMP Sensor Temp", data[index].bmpsensor_temp, "");
+                document.getElementById("data").rows["digital_sensor_temperature"].innerHTML = dateRow("Digital Sensor Temp", data[index].digitalsensor_temp, "");
+                document.getElementById("data").rows["css_sensor_temperature"].innerHTML = dateRow("CSS Sensor Temp", data[index].cssSensor_temp, "");
+                document.getElementById("data").rows["css_sensor_eco2"].innerHTML = dateRow(" CSS Sensor eCO2", data[index].cssSensor_eCO2, "");
+                document.getElementById("data").rows["css_sensor_tvoc"].innerHTML = dateRow("CSS Sensor TVOC", data[index].cssSensor_TVOC, "");
+                document.getElementById("data").rows["uv"].innerHTML = dateRow("UV", data[index].UV, "");
+                document.getElementById("data").rows["accel x"].innerHTML = dateRow("Accel X", data[index].accelX, "");
+                document.getElementById("data").rows["accel y"].innerHTML = dateRow("Accel Y", data[index].accelY, "");
+                document.getElementById("data").rows["accel z"].innerHTML = dateRow("Accel Z", data[index].accelZ, "");
+                document.getElementById("data").rows["magnetic x"].innerHTML = dateRow("Magnetic X", data[index]. magneticX, "");
+                document.getElementById("data").rows["magnetic y"].innerHTML = dateRow("Magnetic Y", data[index]. magneticY, "");
+                document.getElementById("data").rows["magnetic z"].innerHTML = dateRow("Magnetic Z", data[index]. magneticZ, "");
+                document.getElementById("data").rows["gyro x"].innerHTML = dateRow("Gyro X", data[index].gyroX, "");
+                document.getElementById("data").rows["gyro y"].innerHTML = dateRow("Gyro Y", data[index].gyroY, "");
+                document.getElementById("data").rows["gyro z"].innerHTML = dateRow("Gyro Z", data[index].gyroZ, "");
+            }
+if(index , 500){
+    index++;
+    }else{index = 0;
+    }
+ }
+
+    </script>
+    <!--This is the body This is the visible page-->
+    <!--BR = breaks are added for proper spacing and appearance-->
+    <br>
+    <br>
+    <!--This is a table with 2 data on the same line-->
+    <table>
+        <!--LOGO file inside a table = .jpg, .png-->
+        <td><img src="UATSpace.png"></td>
+        <!--This is the code to add table data in a table-->
+        <td> </td>
+        <td>
+            <!--This is the header comment inside a table-->
+            <h1>UAT Space program</h1>
+        </td>
+    </table>
+    <br>
+    <br>
+    <!--Below is a table with multiple data on multiple lines-->
+    <!--This is the table format added boarder and colum width-->
+    <table border="3" id="data" width="70%" class="mainTable">
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <!--This is the table header with font option-->
+        <thead>
+            <tr style="font-family: 'Trebuchet MS">
+                <th align="left">Date Type</th>
+                <th align="left">Reading</th>
+        </thead>
+        <!--This is the table body with optional font-->
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmp_sensor_altitude"></tr>
+            <tr id="bmp_sensor_pressure"></tr>
+            <tr id="bmp_sensor_temperature"></tr>
+            <tr id="digital_sensor_temperature"></tr>
+            <tr id="css_sensor_temperature"></tr>
+            <tr id="css_sensor_eco2"></tr>
+            <tr id="css_sensor_tvoc"></tr>
+            <tr id="uv"></tr>
+            <tr id="accel x"></tr>
+            <tr id="accel y"></tr>
+            <tr id="accel z"></tr>
+            <tr id="magnetic x"></tr>
+            <tr id="magnetic y"></tr>
+            <tr id="magnetic z"></tr>
+            <tr id="gyro x"></tr>
+            <tr id="gyro y"></tr>
+            <tr id="gyro z"></tr>
+        </tbody>
+
+        <table>
+            <!--This is the header area-->
+            <header>
+                <!--BR = breaks are added for proper spacing and appearance-->
+                <br>
+                <!--This is the end of header area-->
+            </header>
+
+            <!--This is the start stop Buttons-->
+            <BR>
+            <button class="button" id="start button" onclick="start();">Start</button>
+            <button class="button" id="stop button" onclick="stop();">Stop</button>
+            <br>
+            <br>
+            <!--This is the play sound Button...if you click it more than once it will play the same file multiple times-->
+            <button class="button" onclick="playStationnoise();">Play Sound</button><br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+</body>
+
+</html>
